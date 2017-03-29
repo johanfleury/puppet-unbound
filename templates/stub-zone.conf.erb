@@ -1,0 +1,27 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+
+stub-zone:
+  name: <%= @title %>
+<%- if not @stub_host.nil? -%>
+  <%- @stub_host.each do |v| -%>
+  stub-host: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @stub_addr.nil? -%>
+  <%- @stub_addr.each do |v| -%>
+  stub-addr: <%= @stub_addr %>
+  <%- end -%>
+<%- end -%>
+<%- if not @stub_prime.nil? -%>
+  stub-prime: <%= yesno(@stub_prime) %>
+<%- end -%>
+<%- if not @stub_first.nil? -%>
+  stub-first: <%= yesno(@stub_first) %>
+<%- end -%>
+<%- if not @stub_ssl_upstream.nil? -%>
+  stub-ssl-upstream: <%= yesno(@stub_ssl_upstream) %>
+<%- end -%>

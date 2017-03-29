@@ -1,0 +1,169 @@
+# Class: unbound::config::server
+class unbound::config::server inherits unbound {
+  assert_private()
+
+  $verbosity = $unbound::verbosity
+  $statistics_interval = $unbound::statistics_interval
+  $statistics_cumulative = $unbound::statistics_cumulative
+  $extended_statistics = $unbound::extended_statistics
+  $num_threads = $unbound::num_threads
+  $port = $unbound::port
+  $interface = $unbound::interface
+  $interface_automatic = $unbound::interface_automatic
+  $outgoing_interface = $unbound::outgoing_interface
+  $outgoing_range = $unbound::outgoing_range
+  $outgoing_port_permit = $unbound::outgoing_port_permit
+  $outgoing_port_avoid = $unbound::outgoing_port_avoid
+  $outgoing_num_tcp = $unbound::outgoing_num_tcp
+  $incoming_num_tcp = $unbound::incoming_num_tcp
+  $edns_buffer_size = $unbound::edns_buffer_size
+  $max_udp_size = $unbound::max_udp_size
+  $msg_buffer_size = $unbound::msg_buffer_size
+  $msg_cache_size = $unbound::msg_cache_size
+  $msg_cache_slabs = $unbound::msg_cache_slabs
+  $num_queries_per_thread = $unbound::num_queries_per_thread
+  $jostle_timeout = $unbound::jostle_timeout
+  $delay_close = $unbound::delay_close
+  $so_rcvbuf = $unbound::so_rcvbuf
+  $so_sndbuf = $unbound::so_sndbuf
+  $so_reuseport = $unbound::so_reuseport
+  $ip_transparent = $unbound::ip_transparent
+  $ip_freebind = $unbound::ip_freebind
+  $rrset_cache_size = $unbound::rrset_cache_size
+  $rrset_cache_slabs = $unbound::rrset_cache_slabs
+  $cache_max_ttl = $unbound::cache_max_ttl
+  $cache_min_ttl = $unbound::cache_min_ttl
+  $cache_max_negative_ttl = $unbound::cache_max_negative_ttl
+  $infra_host_ttl = $unbound::infra_host_ttl
+  $infra_cache_slabs = $unbound::infra_cache_slabs
+  $infra_cache_numhosts = $unbound::infra_cache_numhosts
+  $infra_cache_min_rtt = $unbound::infra_cache_min_rtt
+  $define_tag = $unbound::define_tag
+  $do_ip4 = $unbound::do_ip4
+  $do_ip6 = $unbound::do_ip6
+  $prefer_ip6 = $unbound::prefer_ip6
+  $do_udp = $unbound::do_udp
+  $do_tcp = $unbound::do_tcp
+  $tcp_mss = $unbound::tcp_mss
+  $outgoing_tcp_mss = $unbound::outgoing_tcp_mss
+  $tcp_upstream = $unbound::tcp_upstream
+  $ssl_upstream = $unbound::ssl_upstream
+  $ssl_service_key = $unbound::ssl_service_key
+  $ssl_service_pem = $unbound::ssl_service_pem
+  $ssl_port = $unbound::ssl_port
+  $use_systemd = $unbound::use_systemd
+  $do_daemonize = $unbound::do_daemonize
+  $access_control = $unbound::access_control
+  $access_control_tag = $unbound::access_control_tag
+  $access_control_tag_action = $unbound::access_control_tag_action
+  $access_control_tag_data = $unbound::access_control_tag_data
+  $access_control_view = $unbound::access_control_view
+  $chroot = $unbound::chroot
+  $username = $unbound::user
+  $directory = $unbound::directory
+  $logfile = $unbound::logfile
+  $use_syslog = $unbound::use_syslog
+  $log_identity = $unbound::log_identity
+  $log_time_ascii = $unbound::log_time_ascii
+  $log_queries = $unbound::log_queries
+  $log_replies = $unbound::log_replies
+  $pidfile = $unbound::pidfile
+  $root_hints = $unbound::root_hints
+  $hide_identity = $unbound::hide_identity
+  $identity = $unbound::identity
+  $hide_version = $unbound::hide_version
+  $version = $unbound::version
+  $target_fetch_policy = $unbound::target_fetch_policy
+  $harden_short_bufsize = $unbound::harden_short_bufsize
+  $harden_large_queries = $unbound::harden_large_queries
+  $harden_glue = $unbound::harden_glue
+  $harden_dnssec_stripped = $unbound::harden_dnssec_stripped
+  $harden_below_nxdomain = $unbound::harden_below_nxdomain
+  $harden_referral_path = $unbound::harden_referral_path
+  $harden_algo_downgrade = $unbound::harden_algo_downgrade
+  $use_caps_for_id = $unbound::use_caps_for_id
+  $caps_whitelist = $unbound::caps_whitelist
+  $qname_minimisation = $unbound::qname_minimisation
+  $qname_minimisation_strict = $unbound::qname_minimisation_strict
+  $private_address = $unbound::private_address
+  $private_domain = $unbound::private_domain
+  $unwanted_reply_threshold = $unbound::unwanted_reply_threshold
+  $do_not_query_address = $unbound::do_not_query_address
+  $do_not_query_localhost = $unbound::do_not_query_localhost
+  $prefetch = $unbound::prefetch
+  $prefetch_key = $unbound::prefetch_key
+  $rrset_roundrobin = $unbound::rrset_roundrobin
+  $minimal_responses = $unbound::minimal_responses
+  $disable_dnssec_lame_check = $unbound::disable_dnssec_lame_check
+  $module_config = $unbound::module_config
+  $trust_anchor_file = $unbound::trust_anchor_file
+  $auto_trust_anchor_file = $unbound::auto_trust_anchor_file
+  $trust_anchor = $unbound::trust_anchor
+  $trusted_keys_file = $unbound::trusted_keys_file
+  $dlv_anchor_file = $unbound::dlv_anchor_file
+  $dlv_anchor = $unbound::dlv_anchor
+  $domain_insecure = $unbound::domain_insecure
+  $val_override_date = $unbound::val_override_date
+  $val_sig_skew_min = $unbound::val_sig_skew_min
+  $val_sig_skew_max = $unbound::val_sig_skew_max
+  $val_bogus_ttl = $unbound::val_bogus_ttl
+  $val_clean_additional = $unbound::val_clean_additional
+  $val_log_level = $unbound::val_log_level
+  $val_permissive_mode = $unbound::val_permissive_mode
+  $ignore_cd_flag = $unbound::ignore_cd_flag
+  $serve_expired = $unbound::serve_expired
+  $val_nsec3_keysize_iterations = $unbound::val_nsec3_keysize_iterations
+  $add_holddown = $unbound::add_holddown
+  $del_holddown = $unbound::del_holddown
+  $keep_missing = $unbound::keep_missing
+  $permit_small_holddown = $unbound::permit_small_holddown
+  $key_cache_size = $unbound::key_cache_size
+  $key_cache_slabs = $unbound::key_cache_slabs
+  $neg_cache_size = $unbound::neg_cache_size
+  $unblock_lan_zones = $unbound::unblock_lan_zones
+  $insecure_lan_zones = $unbound::insecure_lan_zones
+  $local_zone = $unbound::local_zone
+  $local_data = $unbound::local_data
+  $local_data_ptr = $unbound::local_data_ptr
+  $local_zone_tag = $unbound::local_zone_tag
+  $local_zone_override = $unbound::local_zone_override
+  $ratelimit = $unbound::ratelimit
+  $ratelimit_size = $unbound::ratelimit_size
+  $ratelimit_slabs = $unbound::ratelimit_slabs
+  $ratelimit_factor = $unbound::ratelimit_factor
+  $ratelimit_for_domain = $unbound::ratelimit_for_domain
+  $ratelimit_below_domain = $unbound::ratelimit_below_domain
+  $ip_ratelimit = $unbound::ip_ratelimit
+  $ip_ratelimit_size = $unbound::ip_ratelimit_size
+  $ip_ratelimit_slabs = $unbound::ip_ratelimit_slabs
+  $ip_ratelimit_factor = $unbound::ip_ratelimit_factor
+
+  file { "${unbound::config_sub_dir}/server.conf":
+    ensure       => file,
+    owner        => $unbound::user,
+    group        => $unbound::group,
+    mode         => '0640',
+    content      => template('unbound/server.conf.erb'),
+    require      => File[$unbound::config_sub_dir],
+    notify       => Service[$unbound::service_name],
+    validate_cmd => $unbound::validate_cmd,
+  }
+
+  if $root_hints and $unbound::download_root_hints {
+    exec { 'update-root-hints':
+      command => "wget -q ${unbound::root_hints_url} -O ${root_hints}",
+      user    => $unbound::user,
+      creates => $root_hints,
+      notify  => Service[$unbound::service_name],
+    }
+  }
+
+  if $auto_trust_anchor_file and $unbound::download_trust_anchor {
+    exec { 'update-trust-anchors':
+      command => "unbound-anchor -a ${auto_trust_anchor_file}",
+      user    => $unbound::user,
+      creates => $auto_trust_anchor_file,
+      notify  => Service[$unbound::service_name],
+    }
+  }
+}

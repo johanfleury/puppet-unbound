@@ -1,0 +1,10 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+# This file is managed by Puppet. DO NOT EDIT.
+
+module-config:
+  dns64-prefix: <%= @dns64_prefix %>
+  dns64-synthall: <%= yesno(@dns64_synthall) %>

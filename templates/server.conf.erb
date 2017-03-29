@@ -1,0 +1,449 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+# This file is managed by Puppet. DO NOT EDIT.
+
+server:
+<%- if not @verbosity.nil? -%>
+  verbosity: <%= @verbosity %>
+<%- end -%>
+<%- if not @statistics_interval.nil? -%>
+  statistics-interval: <%= @statistics_interval %>
+<%- end -%>
+<%- if not @statistics_cumulative.nil? -%>
+  statistics-cumulative: <%= yesno(@statistics_cumulative) %>
+<%- end -%>
+<%- if not @extended_statistics.nil? -%>
+  extended-statistics: <%= yesno(@extended_statistics) %>
+<%- end -%>
+<%- if not @num_threads.nil? -%>
+  num-threads: <%= @num_threads %>
+<%- end -%>
+<%- if not @port.nil? -%>
+  port: <%= @port %>
+<%- end -%>
+<%- if not @interface.nil? -%>
+  <%- @interface.each do |v| -%>
+  interface: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @interface_automatic.nil? -%>
+  interface-automatic: <%= yesno(@interface_automatic) %>
+<%- end -%>
+<%- if not @outgoing_interface.nil? -%>
+  <%- @outgoing_interface.each do |v| -%>
+  outgoing-interface: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @outgoing_range.nil? -%>
+  outgoing-range: <%= @outgoing_range %>
+<%- end -%>
+<%- if not @outgoing_port_permit.nil? -%>
+  outgoing-port-permit: <%= @outgoing_port_permit %>
+<%- end -%>
+<%- if not @outgoing_port_avoid.nil? -%>
+  outgoing-port-avoid: <%= @outgoing_port_avoid %>
+<%- end -%>
+<%- if not @outgoing_num_tcp.nil? -%>
+  outgoing-num-tcp: <%= @outgoing_num_tcp %>
+<%- end -%>
+<%- if not @incoming_num_tcp.nil? -%>
+  incoming-num-tcp: <%= @incoming_num_tcp %>
+<%- end -%>
+<%- if not @edns_buffer_size.nil? -%>
+  edns-buffer-size: <%= @edns_buffer_size %>
+<%- end -%>
+<%- if not @max_udp_size.nil? -%>
+  max-udp-size: <%= @max_udp_size %>
+<%- end -%>
+<%- if not @msg_buffer_size.nil? -%>
+  msg-buffer-size: <%= @msg_buffer_size %>
+<%- end -%>
+<%- if not @msg_cache_size.nil? -%>
+  msg-cache-size: <%= @msg_cache_size %>
+<%- end -%>
+<%- if not @msg_cache_slabs.nil? -%>
+  msg-cache-slabs: <%= @msg_cache_slabs %>
+<%- end -%>
+<%- if not @num_queries_per_thread.nil? -%>
+  num-queries-per-thread: <%= @num_queries_per_thread %>
+<%- end -%>
+<%- if not @jostle_timeout.nil? -%>
+  jostle-timeout: <%= @jostle_timeout %>
+<%- end -%>
+<%- if not @delay_close.nil? -%>
+  delay-close: <%= @delay_close %>
+<%- end -%>
+<%- if not @so_rcvbuf.nil? -%>
+  so-rcvbuf: <%= @so_rcvbuf %>
+<%- end -%>
+<%- if not @so_sndbuf.nil? -%>
+  so-sndbuf: <%= @so_sndbuf %>
+<%- end -%>
+<%- if not @so_reuseport.nil? -%>
+  so-reuseport: <%= yesno(@so_reuseport) %>
+<%- end -%>
+<%- if not @ip_transparent.nil? -%>
+  ip-transparent: <%= yesno(@ip_transparent) %>
+<%- end -%>
+<%- if not @ip_freebind.nil? -%>
+  ip-freebind: <%= yesno(@ip_freebind) %>
+<%- end -%>
+<%- if not @rrset_cache_size.nil? -%>
+  rrset-cache-size: <%= @rrset_cache_size %>
+<%- end -%>
+<%- if not @rrset_cache_slabs.nil? -%>
+  rrset-cache-slabs: <%= @rrset_cache_slabs %>
+<%- end -%>
+<%- if not @cache_max_ttl.nil? -%>
+  cache-max-ttl: <%= @cache_max_ttl %>
+<%- end -%>
+<%- if not @cache_min_ttl.nil? -%>
+  cache-min-ttl: <%= @cache_min_ttl %>
+<%- end -%>
+<%- if not @cache_max_negative_ttl.nil? -%>
+  cache-max-negative-ttl: <%= @cache_max_negative_ttl %>
+<%- end -%>
+<%- if not @infra_host_ttl.nil? -%>
+  infra-host-ttl: <%= @infra_host_ttl %>
+<%- end -%>
+<%- if not @infra_cache_slabs.nil? -%>
+  infra-cache-slabs: <%= @infra_cache_slabs %>
+<%- end -%>
+<%- if not @infra_cache_numhosts.nil? -%>
+  infra-cache-numhosts: <%= @infra_cache_numhosts %>
+<%- end -%>
+<%- if not @infra_cache_min_rtt.nil? -%>
+  infra-cache-min-rtt: <%= @infra_cache_min_rtt %>
+<%- end -%>
+<%- if not @define_tag.nil? -%>
+  define-tag: "<%= @define_tag.join(" ") %>"
+<%- end -%>
+<%- if not @do_ip4.nil? -%>
+  do-ip4: <%= yesno(@do_ip4) %>
+<%- end -%>
+<%- if not @do_ip6.nil? -%>
+  do-ip6: <%= yesno(@do_ip6) %>
+<%- end -%>
+<%- if not @prefer_ip6.nil? -%>
+  prefer-ip6: <%= yesno(@prefer_ip6) %>
+<%- end -%>
+<%- if not @do_udp.nil? -%>
+  do-udp: <%= yesno(@do_udp) %>
+<%- end -%>
+<%- if not @do_tcp.nil? -%>
+  do-tcp: <%= yesno(@do_tcp) %>
+<%- end -%>
+<%- if not @tcp_mss.nil? -%>
+  tcp-mss: <%= @tcp_mss %>
+<%- end -%>
+<%- if not @outgoing_tcp_mss.nil? -%>
+  outgoing-tcp-mss: <%= @outgoing_tcp_mss %>
+<%- end -%>
+<%- if not @tcp_upstream.nil? -%>
+  tcp-upstream: <%= yesno(@tcp_upstream) %>
+<%- end -%>
+<%- if not @ssl_upstream.nil? -%>
+  ssl-upstream: <%= yesno(@ssl_upstream) %>
+<%- end -%>
+<%- if not @ssl_service_key.nil? -%>
+  ssl-service-key: "<%= @ssl_service_key %>"
+<%- end -%>
+<%- if not @ssl_service_pem.nil? -%>
+  ssl-service-pem: "<%= @ssl_service_pem %>"
+<%- end -%>
+<%- if not @ssl_port.nil? -%>
+  ssl-port: <%= @ssl_port %>
+<%- end -%>
+<%- if not @use_systemd.nil? -%>
+  use-systemd: <%= yesno(@use_systemd) %>
+<%- end -%>
+<%- if not @do_daemonize.nil? -%>
+  do-daemonize: <%= yesno(@do_daemonize) %>
+<%- end -%>
+<%- if not @access_control.nil? -%>
+  <%- @access_control.each do |k,v| -%>
+  access-control: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @access_control_tag.nil? -%>
+  <%- @access_control_tag.each do |k,v| -%>
+  access-control-tag: <%= k %> "<%= v.join(" ") %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @access_control_tag_action.nil? -%>
+  <%- @access_control_tag_action.each do |k,v| -%>
+  access-control-tag-action: <%= k %> <%= v[0] %> "<%= v[1].join(" ") %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @access_control_tag_data.nil? -%>
+  <%- @access_control_tag_data.each do |k,v| -%>
+  access-control-tag-data: <%= k %> <%= v[0] %> "<%= v[1] -%>"
+  <%- end -%>
+<%- end -%>
+<%- if not @access_control_view.nil? -%>
+  <%- @access_control_view.each do |k,v| -%>
+  access-control-view: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @chroot.nil? -%>
+  chroot: "<%= @chroot %>"
+<%- end -%>
+<%- if not @username.nil? -%>
+  username: <%= @username %>
+<%- end -%>
+<%- if not @directory.nil? -%>
+  directory: "<%= @directory %>"
+<%- end -%>
+<%- if not @logfile.nil? -%>
+  logfile: "<%= @logfile %>"
+<%- end -%>
+<%- if not @use_syslog.nil? -%>
+  use-syslog: <%= yesno(@use_syslog) %>
+<%- end -%>
+<%- if not @log_identity.nil? -%>
+  log-identity: <%= @log_identity %>
+<%- end -%>
+<%- if not @log_time_ascii.nil? -%>
+  log-time-ascii: <%= yesno(yesno(@log_time_ascii)) %>
+<%- end -%>
+<%- if not @log_queries.nil? -%>
+  log-queries: <%= yesno(@log_queries) %>
+<%- end -%>
+<%- if not @log_replies.nil? -%>
+  log-replies: <%= yesno(@log_replies) %>
+<%- end -%>
+<%- if not @pidfile.nil? -%>
+  pidfile: "<%= @pidfile %>"
+<%- end -%>
+<%- if not @root_hints.nil? -%>
+  root-hints: "<%= @root_hints %>"
+<%- end -%>
+<%- if not @hide_identity.nil? -%>
+  hide-identity: <%= yesno(@hide_identity) %>
+<%- end -%>
+<%- if not @identity.nil? -%>
+  identity: <%= @identity %>
+<%- end -%>
+<%- if not @hide_version.nil? -%>
+  hide-version: <%= yesno(@hide_version) %>
+<%- end -%>
+<%- if not @version.nil? -%>
+  version: <%= @version %>
+<%- end -%>
+<%- if not @target_fetch_policy.nil? -%>
+  target-fetch-policy: "<%= @target_fetch_policy.join(" ") %>"
+<%- end -%>
+<%- if not @harden_short_bufsize.nil? -%>
+  harden-short-bufsize: <%= yesno(@harden_short_bufsize) %>
+<%- end -%>
+<%- if not @harden_large_queries.nil? -%>
+  harden-large-queries: <%= yesno(@harden_large_queries) %>
+<%- end -%>
+<%- if not @harden_glue.nil? -%>
+  harden-glue: <%= yesno(@harden_glue) %>
+<%- end -%>
+<%- if not @harden_dnssec_stripped.nil? -%>
+  harden-dnssec-stripped: <%= yesno(@harden_dnssec_stripped) %>
+<%- end -%>
+<%- if not @harden_below_nxdomain.nil? -%>
+  harden-below-nxdomain: <%= yesno(@harden_below_nxdomain) %>
+<%- end -%>
+<%- if not @harden_referral_path.nil? -%>
+  harden-referral-path: <%= yesno(@harden_referral_path) %>
+<%- end -%>
+<%- if not @harden_algo_downgrade.nil? -%>
+  harden-algo-downgrade: <%= yesno(@harden_algo_downgrade) %>
+<%- end -%>
+<%- if not @use_caps_for_id.nil? -%>
+  use-caps-for-id: <%= yesno(@use_caps_for_id) %>
+<%- end -%>
+<%- if not @caps_whitelist.nil? -%>
+  caps-whitelist: <%= @caps_whitelist %>
+<%- end -%>
+<%- if not @qname_minimisation.nil? -%>
+  qname-minimisation: <%= yesno(@qname_minimisation) %>
+<%- end -%>
+<%- if not @qname_minimisation_strict.nil? -%>
+  qname-minimisation-strict: <%= yesno(@qname_minimisation_strict) %>
+<%- end -%>
+<%- if not @private_address.nil? -%>
+  private-address: <%= @private_address %>
+<%- end -%>
+<%- if not @private_domain.nil? -%>
+  private-domain: <%= @private_domain %>
+<%- end -%>
+<%- if not @unwanted_reply_threshold.nil? -%>
+  unwanted-reply-threshold: <%= @unwanted_reply_threshold %>
+<%- end -%>
+<%- if not @do_not_query_address.nil? -%>
+  do-not-query-address: <%= yesno(@do_not_query_address) %>
+<%- end -%>
+<%- if not @do_not_query_localhost.nil? -%>
+  do-not-query-localhost: <%= yesno(@do_not_query_localhost) %>
+<%- end -%>
+<%- if not @prefetch.nil? -%>
+  prefetch: <%= yesno(@prefetch) %>
+<%- end -%>
+<%- if not @prefetch_key.nil? -%>
+  prefetch-key: <%= yesno(@prefetch_key) %>
+<%- end -%>
+<%- if not @rrset_roundrobin.nil? -%>
+  rrset-roundrobin: <%= yesno(@rrset_roundrobin) %>
+<%- end -%>
+<%- if not @minimal_responses.nil? -%>
+  minimal-responses: <%= yesno(@minimal_responses) %>
+<%- end -%>
+<%- if not @disable_dnssec_lame_check.nil? -%>
+  disable-dnssec-lame-check: <%= yesno(@disable_dnssec_lame_check) %>
+<%- end -%>
+<%- if not @module_config.nil? -%>
+  module-config: "<%= @module_config.join(" ") %>"
+<%- end -%>
+<%- if not @trust_anchor_file.nil? -%>
+  trust-anchor-file: "<%= @trust_anchor_file %>"
+<%- end -%>
+<%- if not @auto_trust_anchor_file.nil? -%>
+  auto-trust-anchor-file: "<%= @auto_trust_anchor_file %>"
+<%- end -%>
+<%- if not @trust_anchor.nil? -%>
+  <%- @trust_anchor.each do |trust_anchor| -%>
+  trust-anchor: "<%= @trust_anchor %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @trusted_keys_file.nil? -%>
+  <%- @trusted_keys_file.each do |v| -%>
+  trusted-keys-file: "<%= v %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @dlv_anchor_file.nil? -%>
+  dlv-anchor-file: "<%= @dlv_anchor_file %>"
+<%- end -%>
+<%- if not @dlv_anchor.nil? -%>
+  <%- @dlv_anchor.each do |v| -%>
+  dlv-anchor: "<%= v %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @domain_insecure.nil? -%>
+  <%- @domain_insecure.each do |v| -%>
+  domain-insecure: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @val_override_date.nil? -%>
+  val-override-date: <%= @val_override_date %>
+<%- end -%>
+<%- if not @val_sig_skew_min.nil? -%>
+  val-sig-skew-min: <%= @val_sig_skew_min %>
+<%- end -%>
+<%- if not @val_sig_skew_max.nil? -%>
+  val-sig-skew-max: <%= @val_sig_skew_max %>
+<%- end -%>
+<%- if not @val_bogus_ttl.nil? -%>
+  val-bogus-ttl: <%= @val_bogus_ttl %>
+<%- end -%>
+<%- if not @val_clean_additional.nil? -%>
+  val-clean-additional: <%= yesno(@val_clean_additional) %>
+<%- end -%>
+<%- if not @val_log_level.nil? -%>
+  val-log-level: <%= @val_log_level %>
+<%- end -%>
+<%- if not @val_permissive_mode.nil? -%>
+  val-permissive-mode: <%= yesno(@val_permissive_mode) %>
+<%- end -%>
+<%- if not @ignore_cd_flag.nil? -%>
+  ignore-cd-flag: <%= yesno(@ignore_cd_flag) %>
+<%- end -%>
+<%- if not @serve_expired.nil? -%>
+  serve-expired: <%= yesno(@serve_expired) %>
+<%- end -%>
+<%- if not @val_nsec3_keysize_iterations.nil? -%>
+  val_nsec3_keysize_iterations: "<%= @val_nsec3_keysize_iterations.join(" ") %>"
+<%- end -%>
+<%- if not @add_holddown.nil? -%>
+  add-holddown: <%= @add_holddown %>
+<%- end -%>
+<%- if not @del_holddown.nil? -%>
+  del-holddown: <%= @del_holddown %>
+<%- end -%>
+<%- if not @keep_missing.nil? -%>
+  keep-missing: <%= @keep_missing %>
+<%- end -%>
+<%- if not @permit_small_holddown.nil? -%>
+  permit-small-holddown: <%= yesno(@permit_small_holddown) %>
+<%- end -%>
+<%- if not @key_cache_size.nil? -%>
+  key-cache-size: <%= @key_cache_size %>
+<%- end -%>
+<%- if not @key_cache_slabs.nil? -%>
+  key-cache-slabs: <%= @key_cache_slabs %>
+<%- end -%>
+<%- if not @neg_cache_size.nil? -%>
+  neg-cache-size: <%= @neg_cache_size %>
+<%- end -%>
+<%- if not @unblock_lan_zones.nil? -%>
+  unblock-lan-zones: <%= yesno(@unblock_lan_zones) %>
+<%- end -%>
+<%- if not @insecure_lan_zones.nil? -%>
+  insecure-lan-zones: <%= yesno(@insecure_lan_zones) %>
+<%- end -%>
+<%- if not @local_zone.nil? -%>
+  <%- @local_zone.each do |k,v| -%>
+  local-zone: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @local_data.nil? -%>
+  <%- @local_data.each do |v| -%>
+  local-data: "<%= v %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @local_data_ptr.nil? -%>
+  <%- @local_data_ptr.each do |k,v| -%>
+  local-data-ptr: "<%= k %> <%= v %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @local_zone_tag.nil? -%>
+  <%- @local_zone_tag.each do |k,v| -%>
+  local-zone-tag: <%= k %> "<%= v.join(" ") %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @local_zone_override.nil? -%>
+  <%- @local_zone_override.each do |k,v| -%>
+  local-zone-override: <%= k %> <%= v[0] %> <%= v[1] %>
+  <%- end -%>
+<%- end -%>
+<%- if not @ratelimit.nil? -%>
+  ratelimit: <%= @ratelimit %>
+<%- end -%>
+<%- if not @ratelimit_size.nil? -%>
+  ratelimit-size: <%= @ratelimit_size %>
+<%- end -%>
+<%- if not @ratelimit_slabs.nil? -%>
+  ratelimit-slabs: <%= @ratelimit_slabs %>
+<%- end -%>
+<%- if not @ratelimit_factor.nil? -%>
+  ratelimit-factor: <%= @ratelimit_factor %>
+<%- end -%>
+<%- if not @ratelimit_for_domain.nil? -%>
+  <%- @ratelimit_for_domain.each do |k,v| -%>
+  ratelimit-for-domain: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @ratelimit_below_domain.nil? -%>
+  <%- @ratelimit_below_domain.each do |v| -%>
+  ratelimit-below-domain: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @ip_ratelimit.nil? -%>
+  ip-ratelimit: <%= @ip_ratelimit %>
+<%- end -%>
+<%- if not @ip_ratelimit_size.nil? -%>
+  ip-ratelimit-size: <%= @ip_ratelimit_size %>
+<%- end -%>
+<%- if not @ip_ratelimit_slabs.nil? -%>
+  ip-ratelimit-slabs: <%= @ip_ratelimit_slabs %>
+<%- end -%>
+<%- if not @ip_ratelimit_factor.nil? -%>
+  ip-ratelimit-factor: <%= @ip_ratelimit_factor %>
+<%- end -%>

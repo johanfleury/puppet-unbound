@@ -1,0 +1,21 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+
+view:
+  name: <%= @title %>
+<%- if not @local_zone.nil? -%>
+  <%- @local_zone.each do |k,v| -%>
+  local-zone: <%= k %> <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @local_data.nil? -%>
+  <%- @local_data.each do |k| -%>
+  local-data: "<%= k %>"
+  <%- end -%>
+<%- end -%>
+<%- if not @stub_first.nil? -%>
+  view-first: <%= yesno(@stub_first) %>
+<%- end -%>

@@ -1,0 +1,24 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+
+forward-zone:
+  name: <%= @title %>
+<%- if not @forward_host.nil? -%>
+  <%- @forward_host.each do |v| -%>
+  forward-host: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @forward_addr.nil? -%>
+  <%- @forward_addr.each do |v| -%>
+  forward-addr: <%= @forward_addr %>
+  <%- end -%>
+<%- end -%>
+<%- if not @forward_first.nil? -%>
+  forward-first: <%= yesno(@forward_first) %>
+<%- end -%>
+<%- if not @forward_ssl_upstream.nil? -%>
+  forward-ssl-upstream: <%= yesno(@forward_ssl_upstream) %>
+<%- end -%>

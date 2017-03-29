@@ -1,0 +1,34 @@
+<%-
+def yesno(value)
+  value ? 'yes' : 'no'
+end
+-%>
+# This file is managed by Puppet. DO NOT EDIT.
+
+remote-control:
+<%- if not @control_enable.nil? -%>
+  control-enable: <%= yesno(@control_enable) %>
+<%- end -%>
+<%- if not @control_interface.nil? -%>
+  <%- @control_interface.each do |v| -%>
+  control-interface: <%= v %>
+  <%- end -%>
+<%- end -%>
+<%- if not @control_port.nil? -%>
+  control-port: <%= @control_port %>
+<%- end -%>
+<%- if not @control_use_cert.nil? -%>
+  control-use-cert: <%= yesno(@control_enable) %>
+<%- end -%>
+<%- if not @server_key_file.nil? -%>
+  server-key-file: "<%= @server_key_file %>"
+<%- end -%>
+<%- if not @server_cert_file.nil? -%>
+  server-cert-file: "<%= @server_cert_file %>"
+<%- end -%>
+<%- if not @control_key_file.nil? -%>
+  control-key-file: "<%= @control_key_file %>"
+<%- end -%>
+<%- if not @control_cert_file.nil? -%>
+  control-cert-file: "<%= @control_cert_file %>"
+<%- end -%>
