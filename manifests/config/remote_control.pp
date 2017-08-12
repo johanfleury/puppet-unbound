@@ -61,8 +61,8 @@ class unbound::config::remote_control inherits unbound {
         owner   => $unbound::user,
         group   => $unbound::group,
         mode    => '0640',
-        content => $server_cert_content,
-        source  => $server_cert_source,
+        content => $server_key_content,
+        source  => $server_key_source,
       }
 
       file { $server_cert_file:
@@ -79,8 +79,8 @@ class unbound::config::remote_control inherits unbound {
         owner   => $unbound::user,
         group   => $unbound::group,
         mode    => '0640',
-        content => $control_cert_content,
-        source  => $control_cert_source,
+        content => $control_key_content,
+        source  => $control_key_source,
       }
 
       file { $control_cert_file:
