@@ -1,10 +1,5 @@
-<%-
-def yesno(value)
-  value ? 'yes' : 'no'
-end
--%>
 # This file is managed by Puppet. DO NOT EDIT.
 
 module-config:
   dns64-prefix: <%= @dns64_prefix %>
-  dns64-synthall: <%= yesno(@dns64_synthall) %>
+  dns64-synthall: <%= scope.call_function('bool2str', [@dns64_synthall, 'yes', 'no']) %>

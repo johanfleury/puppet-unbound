@@ -1,13 +1,8 @@
-<%-
-def yesno(value)
-  value ? 'yes' : 'no'
-end
--%>
 # This file is managed by Puppet. DO NOT EDIT.
 
 remote-control:
 <%- if not @control_enable.nil? -%>
-  control-enable: <%= yesno(@control_enable) %>
+  control-enable: <%= scope.call_function('bool2str', [@control_enable, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @control_interface.nil? -%>
   <%- @control_interface.each do |v| -%>
@@ -18,7 +13,7 @@ remote-control:
   control-port: <%= @control_port %>
 <%- end -%>
 <%- if not @control_use_cert.nil? -%>
-  control-use-cert: <%= yesno(@control_enable) %>
+  control-use-cert: <%= scope.call_function('bool2str', [@control_enable, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @server_key_file.nil? -%>
   server-key-file: "<%= @server_key_file %>"
