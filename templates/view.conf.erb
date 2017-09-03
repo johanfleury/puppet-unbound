@@ -1,9 +1,3 @@
-<%-
-def yesno(value)
-  value ? 'yes' : 'no'
-end
--%>
-
 view:
   name: <%= @title %>
 <%- if not @local_zone.nil? -%>
@@ -17,5 +11,5 @@ view:
   <%- end -%>
 <%- end -%>
 <%- if not @stub_first.nil? -%>
-  view-first: <%= yesno(@stub_first) %>
+  view-first: <%= scope.call_function('bool2str', [@stub_first, 'yes', 'no']) %>
 <%- end -%>

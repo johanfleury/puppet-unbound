@@ -1,8 +1,3 @@
-<%-
-def yesno(value)
-  value ? 'yes' : 'no'
-end
--%>
 # This file is managed by Puppet. DO NOT EDIT.
 
 server:
@@ -13,10 +8,10 @@ server:
   statistics-interval: <%= @statistics_interval %>
 <%- end -%>
 <%- if not @statistics_cumulative.nil? -%>
-  statistics-cumulative: <%= yesno(@statistics_cumulative) %>
+  statistics-cumulative: <%= scope.call_function('bool2str', [@statistics_cumulative, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @extended_statistics.nil? -%>
-  extended-statistics: <%= yesno(@extended_statistics) %>
+  extended-statistics: <%= scope.call_function('bool2str', [@extended_statistics, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @num_threads.nil? -%>
   num-threads: <%= @num_threads %>
@@ -30,7 +25,7 @@ server:
   <%- end -%>
 <%- end -%>
 <%- if not @interface_automatic.nil? -%>
-  interface-automatic: <%= yesno(@interface_automatic) %>
+  interface-automatic: <%= scope.call_function('bool2str', [@interface_automatic, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @outgoing_interface.nil? -%>
   <%- @outgoing_interface.each do |v| -%>
@@ -83,13 +78,13 @@ server:
   so-sndbuf: <%= @so_sndbuf %>
 <%- end -%>
 <%- if not @so_reuseport.nil? -%>
-  so-reuseport: <%= yesno(@so_reuseport) %>
+  so-reuseport: <%= scope.call_function('bool2str', [@so_reuseport, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @ip_transparent.nil? -%>
-  ip-transparent: <%= yesno(@ip_transparent) %>
+  ip-transparent: <%= scope.call_function('bool2str', [@ip_transparent, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @ip_freebind.nil? -%>
-  ip-freebind: <%= yesno(@ip_freebind) %>
+  ip-freebind: <%= scope.call_function('bool2str', [@ip_freebind, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @rrset_cache_size.nil? -%>
   rrset-cache-size: <%= @rrset_cache_size %>
@@ -122,19 +117,19 @@ server:
   define-tag: "<%= @define_tag.join(" ") %>"
 <%- end -%>
 <%- if not @do_ip4.nil? -%>
-  do-ip4: <%= yesno(@do_ip4) %>
+  do-ip4: <%= scope.call_function('bool2str', [@do_ip4, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @do_ip6.nil? -%>
-  do-ip6: <%= yesno(@do_ip6) %>
+  do-ip6: <%= scope.call_function('bool2str', [@do_ip6, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @prefer_ip6.nil? -%>
-  prefer-ip6: <%= yesno(@prefer_ip6) %>
+  prefer-ip6: <%= scope.call_function('bool2str', [@prefer_ip6, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @do_udp.nil? -%>
-  do-udp: <%= yesno(@do_udp) %>
+  do-udp: <%= scope.call_function('bool2str', [@do_udp, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @do_tcp.nil? -%>
-  do-tcp: <%= yesno(@do_tcp) %>
+  do-tcp: <%= scope.call_function('bool2str', [@do_tcp, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @tcp_mss.nil? -%>
   tcp-mss: <%= @tcp_mss %>
@@ -143,10 +138,10 @@ server:
   outgoing-tcp-mss: <%= @outgoing_tcp_mss %>
 <%- end -%>
 <%- if not @tcp_upstream.nil? -%>
-  tcp-upstream: <%= yesno(@tcp_upstream) %>
+  tcp-upstream: <%= scope.call_function('bool2str', [@tcp_upstream, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @ssl_upstream.nil? -%>
-  ssl-upstream: <%= yesno(@ssl_upstream) %>
+  ssl-upstream: <%= scope.call_function('bool2str', [@ssl_upstream, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @ssl_service_key.nil? -%>
   ssl-service-key: "<%= @ssl_service_key %>"
@@ -158,10 +153,10 @@ server:
   ssl-port: <%= @ssl_port %>
 <%- end -%>
 <%- if not @use_systemd.nil? -%>
-  use-systemd: <%= yesno(@use_systemd) %>
+  use-systemd: <%= scope.call_function('bool2str', [@use_systemd, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @do_daemonize.nil? -%>
-  do-daemonize: <%= yesno(@do_daemonize) %>
+  do-daemonize: <%= scope.call_function('bool2str', [@do_daemonize, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @access_control.nil? -%>
   <%- @access_control.each do |k,v| -%>
@@ -201,19 +196,19 @@ server:
   logfile: "<%= @logfile %>"
 <%- end -%>
 <%- if not @use_syslog.nil? -%>
-  use-syslog: <%= yesno(@use_syslog) %>
+  use-syslog: <%= scope.call_function('bool2str', [@use_syslog, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @log_identity.nil? -%>
   log-identity: <%= @log_identity %>
 <%- end -%>
 <%- if not @log_time_ascii.nil? -%>
-  log-time-ascii: <%= yesno(yesno(@log_time_ascii)) %>
+  log-time-ascii: <%= scope.call_function('bool2str', [@log_time_ascii, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @log_queries.nil? -%>
-  log-queries: <%= yesno(@log_queries) %>
+  log-queries: <%= scope.call_function('bool2str', [@log_queries, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @log_replies.nil? -%>
-  log-replies: <%= yesno(@log_replies) %>
+  log-replies: <%= scope.call_function('bool2str', [@log_replies, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @pidfile.nil? -%>
   pidfile: "<%= @pidfile %>"
@@ -222,13 +217,13 @@ server:
   root-hints: "<%= @root_hints %>"
 <%- end -%>
 <%- if not @hide_identity.nil? -%>
-  hide-identity: <%= yesno(@hide_identity) %>
+  hide-identity: <%= scope.call_function('bool2str', [@hide_identity, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @identity.nil? -%>
   identity: <%= @identity %>
 <%- end -%>
 <%- if not @hide_version.nil? -%>
-  hide-version: <%= yesno(@hide_version) %>
+  hide-version: <%= scope.call_function('bool2str', [@hide_version, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @version.nil? -%>
   version: <%= @version %>
@@ -237,37 +232,37 @@ server:
   target-fetch-policy: "<%= @target_fetch_policy.join(" ") %>"
 <%- end -%>
 <%- if not @harden_short_bufsize.nil? -%>
-  harden-short-bufsize: <%= yesno(@harden_short_bufsize) %>
+  harden-short-bufsize: <%= scope.call_function('bool2str', [@harden_short_bufsize, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_large_queries.nil? -%>
-  harden-large-queries: <%= yesno(@harden_large_queries) %>
+  harden-large-queries: <%= scope.call_function('bool2str', [@harden_large_queries, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_glue.nil? -%>
-  harden-glue: <%= yesno(@harden_glue) %>
+  harden-glue: <%= scope.call_function('bool2str', [@harden_glue, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_dnssec_stripped.nil? -%>
-  harden-dnssec-stripped: <%= yesno(@harden_dnssec_stripped) %>
+  harden-dnssec-stripped: <%= scope.call_function('bool2str', [@harden_dnssec_stripped, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_below_nxdomain.nil? -%>
-  harden-below-nxdomain: <%= yesno(@harden_below_nxdomain) %>
+  harden-below-nxdomain: <%= scope.call_function('bool2str', [@harden_below_nxdomain, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_referral_path.nil? -%>
-  harden-referral-path: <%= yesno(@harden_referral_path) %>
+  harden-referral-path: <%= scope.call_function('bool2str', [@harden_referral_path, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @harden_algo_downgrade.nil? -%>
-  harden-algo-downgrade: <%= yesno(@harden_algo_downgrade) %>
+  harden-algo-downgrade: <%= scope.call_function('bool2str', [@harden_algo_downgrade, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @use_caps_for_id.nil? -%>
-  use-caps-for-id: <%= yesno(@use_caps_for_id) %>
+  use-caps-for-id: <%= scope.call_function('bool2str', [@use_caps_for_id, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @caps_whitelist.nil? -%>
   caps-whitelist: <%= @caps_whitelist %>
 <%- end -%>
 <%- if not @qname_minimisation.nil? -%>
-  qname-minimisation: <%= yesno(@qname_minimisation) %>
+  qname-minimisation: <%= scope.call_function('bool2str', [@qname_minimisation, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @qname_minimisation_strict.nil? -%>
-  qname-minimisation-strict: <%= yesno(@qname_minimisation_strict) %>
+  qname-minimisation-strict: <%= scope.call_function('bool2str', [@qname_minimisation_strict, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @private_address.nil? -%>
   private-address: <%= @private_address %>
@@ -279,25 +274,25 @@ server:
   unwanted-reply-threshold: <%= @unwanted_reply_threshold %>
 <%- end -%>
 <%- if not @do_not_query_address.nil? -%>
-  do-not-query-address: <%= yesno(@do_not_query_address) %>
+  do-not-query-address: <%= scope.call_function('bool2str', [@do_not_query_address, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @do_not_query_localhost.nil? -%>
-  do-not-query-localhost: <%= yesno(@do_not_query_localhost) %>
+  do-not-query-localhost: <%= scope.call_function('bool2str', [@do_not_query_localhost, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @prefetch.nil? -%>
-  prefetch: <%= yesno(@prefetch) %>
+  prefetch: <%= scope.call_function('bool2str', [@prefetch, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @prefetch_key.nil? -%>
-  prefetch-key: <%= yesno(@prefetch_key) %>
+  prefetch-key: <%= scope.call_function('bool2str', [@prefetch_key, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @rrset_roundrobin.nil? -%>
-  rrset-roundrobin: <%= yesno(@rrset_roundrobin) %>
+  rrset-roundrobin: <%= scope.call_function('bool2str', [@rrset_roundrobin, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @minimal_responses.nil? -%>
-  minimal-responses: <%= yesno(@minimal_responses) %>
+  minimal-responses: <%= scope.call_function('bool2str', [@minimal_responses, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @disable_dnssec_lame_check.nil? -%>
-  disable-dnssec-lame-check: <%= yesno(@disable_dnssec_lame_check) %>
+  disable-dnssec-lame-check: <%= scope.call_function('bool2str', [@disable_dnssec_lame_check, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @module_config.nil? -%>
   module-config: "<%= @module_config.join(" ") %>"
@@ -344,19 +339,19 @@ server:
   val-bogus-ttl: <%= @val_bogus_ttl %>
 <%- end -%>
 <%- if not @val_clean_additional.nil? -%>
-  val-clean-additional: <%= yesno(@val_clean_additional) %>
+  val-clean-additional: <%= scope.call_function('bool2str', [@val_clean_additional, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @val_log_level.nil? -%>
   val-log-level: <%= @val_log_level %>
 <%- end -%>
 <%- if not @val_permissive_mode.nil? -%>
-  val-permissive-mode: <%= yesno(@val_permissive_mode) %>
+  val-permissive-mode: <%= scope.call_function('bool2str', [@val_permissive_mode, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @ignore_cd_flag.nil? -%>
-  ignore-cd-flag: <%= yesno(@ignore_cd_flag) %>
+  ignore-cd-flag: <%= scope.call_function('bool2str', [@ignore_cd_flag, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @serve_expired.nil? -%>
-  serve-expired: <%= yesno(@serve_expired) %>
+  serve-expired: <%= scope.call_function('bool2str', [@serve_expired, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @val_nsec3_keysize_iterations.nil? -%>
   val_nsec3_keysize_iterations: "<%= @val_nsec3_keysize_iterations.join(" ") %>"
@@ -371,7 +366,7 @@ server:
   keep-missing: <%= @keep_missing %>
 <%- end -%>
 <%- if not @permit_small_holddown.nil? -%>
-  permit-small-holddown: <%= yesno(@permit_small_holddown) %>
+  permit-small-holddown: <%= scope.call_function('bool2str', [@permit_small_holddown, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @key_cache_size.nil? -%>
   key-cache-size: <%= @key_cache_size %>
@@ -383,10 +378,10 @@ server:
   neg-cache-size: <%= @neg_cache_size %>
 <%- end -%>
 <%- if not @unblock_lan_zones.nil? -%>
-  unblock-lan-zones: <%= yesno(@unblock_lan_zones) %>
+  unblock-lan-zones: <%= scope.call_function('bool2str', [@unblock_lan_zones, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @insecure_lan_zones.nil? -%>
-  insecure-lan-zones: <%= yesno(@insecure_lan_zones) %>
+  insecure-lan-zones: <%= scope.call_function('bool2str', [@insecure_lan_zones, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @local_zone.nil? -%>
   <%- @local_zone.each do |k,v| -%>

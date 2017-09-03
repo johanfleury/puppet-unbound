@@ -1,9 +1,3 @@
-<%-
-def yesno(value)
-  value ? 'yes' : 'no'
-end
--%>
-
 forward-zone:
   name: <%= @title %>
 <%- if not @forward_host.nil? -%>
@@ -17,8 +11,8 @@ forward-zone:
   <%- end -%>
 <%- end -%>
 <%- if not @forward_first.nil? -%>
-  forward-first: <%= yesno(@forward_first) %>
+  forward-first: <%= scope.call_function('bool2str', [@forward_first, 'yes', 'no']) %>
 <%- end -%>
 <%- if not @forward_ssl_upstream.nil? -%>
-  forward-ssl-upstream: <%= yesno(@forward_ssl_upstream) %>
+  forward-ssl-upstream: <%= scope.call_function('bool2str', [@forward_ssl_upstream, 'yes', 'no']) %>
 <%- end -%>
