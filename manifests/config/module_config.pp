@@ -12,8 +12,6 @@ class unbound::config::module_config {
       group        => $unbound::group,
       mode         => '0640',
       content      => template('unbound/module-config.conf.erb'),
-      require      => File[$unbound::config_sub_dir],
-      notify       => Service[$unbound::params::service_name],
       validate_cmd => $unbound::validate_cmd,
     }
   }

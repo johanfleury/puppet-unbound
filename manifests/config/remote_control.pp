@@ -26,8 +26,6 @@ class unbound::config::remote_control {
       group        => $::unbound::group,
       mode         => '0640',
       content      => template('unbound/remote-control.conf.erb'),
-      require      => File[$::unbound::config_sub_dir],
-      notify       => Service[$::unbound::params::service_name],
       validate_cmd => $::unbound::validate_cmd,
     }
 
@@ -54,6 +52,10 @@ class unbound::config::remote_control {
         crit('No \'control_cert_content\' nor \'control_cert_source\' specified')
       } elsif ($control_cert_content and $control_cert_source) {
         fail("Can't use 'control_cert_source' and 'control_cert_content' at the same time.")
+      }
+
+      File {
+        before => File["${unbound::config_sub_dir}/remote-control.conf"],
       }
 
       file { $server_key_file:

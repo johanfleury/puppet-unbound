@@ -16,8 +16,6 @@ define unbound::stub_zone (
     group        => $::unbound::group,
     mode         => '0640',
     warn         => true,
-    require      => File[$::unbound::config_sub_dir],
-    notify       => Service[$::unbound::params::service_name],
     validate_cmd => $::unbound::validate_cmd,
   })
 

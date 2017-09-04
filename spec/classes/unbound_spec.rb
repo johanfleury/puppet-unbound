@@ -28,7 +28,7 @@ describe 'unbound' do
         'owner'   => 'unbound',
         'group'   => 'unbound',
         'mode'    => '0750',
-      ).that_requires('Package[unbound]')
+      )
     }
 
     it {
@@ -37,7 +37,7 @@ describe 'unbound' do
         'owner'  => 'unbound',
         'group'  => 'unbound',
         'mode'   => '0640',
-      ).that_requires('File[/etc/unbound]').that_notifies('Service[unbound]')
+      )
     }
 
     it {
@@ -48,7 +48,7 @@ describe 'unbound' do
         'owner'   => 'unbound',
         'group'   => 'unbound',
         'mode'    => '0750',
-      ).that_requires('Package[unbound]')
+      )
     }
 
     it { is_expected.to contain_class('unbound::config::server')  }
@@ -70,7 +70,7 @@ describe 'unbound' do
         'owner'  => 'unbound',
         'group'  => 'unbound',
         'mode'   => '0640',
-      ).that_requires('File[/etc/unbound/unbound.conf.d]')
+      )
     }
 
     it { is_expected.not_to contain_exec('update-root-hints') }
@@ -86,7 +86,7 @@ describe 'unbound' do
         'owner'  => 'unbound',
         'group'  => 'unbound',
         'mode'   => '0640',
-      ).that_requires('File[/etc/unbound/unbound.conf.d]')
+      )
     }
 
     #
@@ -99,7 +99,7 @@ describe 'unbound' do
         'owner'  => 'unbound',
         'group'  => 'unbound',
         'mode'   => '0640',
-      ).that_requires('File[/etc/unbound/unbound.conf.d]')
+      )
     }
 
     #
@@ -112,7 +112,7 @@ describe 'unbound' do
         'owner'  => 'unbound',
         'group'  => 'unbound',
         'mode'   => '0640',
-      ).that_requires('File[/etc/unbound/unbound.conf.d]')
+      )
     }
 
     #

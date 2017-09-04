@@ -144,8 +144,6 @@ class unbound::config::server {
     group        => $::unbound::group,
     mode         => '0640',
     content      => template('unbound/server.conf.erb'),
-    require      => File[$::unbound::config_sub_dir],
-    notify       => Service[$::unbound::service_name],
     validate_cmd => $::unbound::validate_cmd,
   }
 
@@ -154,7 +152,6 @@ class unbound::config::server {
       command => "wget -q ${::unbound::root_hints_url} -O ${root_hints}",
       user    => $::unbound::user,
       creates => $root_hints,
-      notify  => Service[$::unbound::service_name],
     }
   }
 
@@ -163,7 +160,6 @@ class unbound::config::server {
       command => "unbound-anchor -a ${auto_trust_anchor_file}",
       user    => $::unbound::user,
       creates => $auto_trust_anchor_file,
-      notify  => Service[$::unbound::service_name],
     }
   }
 }

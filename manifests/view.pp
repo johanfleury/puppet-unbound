@@ -10,8 +10,6 @@ define unbound::view (
     group        => $::unbound::group,
     mode         => '0640',
     warn         => true,
-    require      => File[$::unbound::config_dir],
-    notify       => Service[$::unbound::params::service_name],
     validate_cmd => $::unbound::validate_cmd,
   })
 

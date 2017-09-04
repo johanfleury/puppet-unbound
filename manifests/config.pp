@@ -9,7 +9,6 @@ class unbound::config {
     owner   => $unbound::user,
     group   => $unbound::group,
     mode    => '0750',
-    require => Package[$unbound::package_name],
   }
 
   file { $unbound::config_file:
@@ -18,8 +17,6 @@ class unbound::config {
     group   => $unbound::group,
     mode    => '0640',
     content => template('unbound/unbound.conf.erb'),
-    require => File[$unbound::config_dir],
-    notify  => Service[$unbound::service_name],
   }
 
   $config_sub_dir = $unbound::config_sub_dir
@@ -31,7 +28,6 @@ class unbound::config {
     owner   => $unbound::user,
     group   => $unbound::group,
     mode    => '0750',
-    require => File[$unbound::config_dir],
   }
 
   contain ::unbound::config::server
