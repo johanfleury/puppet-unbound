@@ -10,19 +10,19 @@ define unbound::forward_zone (
     fail('You must provide forward_host or forward_addr')
   }
 
-  ensure_resource('concat', "${unbound::config_sub_dir}/forward-zones.conf", {
+  ensure_resource('::concat', "${::unbound::config_sub_dir}/forward-zones.conf", {
     ensure       => present,
-    owner        => $unbound::user,
-    group        => $unbound::group,
+    owner        => $::unbound::user,
+    group        => $::unbound::group,
     mode         => '0640',
     warn         => true,
-    require      => File[$unbound::config_sub_dir],
-    notify       => Service[$unbound::params::service_name],
-    validate_cmd => $unbound::validate_cmd,
+    require      => File[$::unbound::config_sub_dir],
+    notify       => Service[$::unbound::params::service_name],
+    validate_cmd => $::unbound::validate_cmd,
   })
 
-  concat::fragment { "forward-${title}":
-    target  => "${unbound::config_sub_dir}/forward-zones.conf",
+  ::concat::fragment { "forward-${title}":
+    target  => "${::unbound::config_sub_dir}/forward-zones.conf",
     content => template('unbound/forward-zone.conf.erb'),
   }
 }

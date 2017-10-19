@@ -1,34 +1,34 @@
 # Class: unbound::config::remote_control
-class unbound::config::remote_control inherits unbound {
+class unbound::config::remote_control {
   assert_private()
 
-  $control_enable = $unbound::control_enable
-  $control_interface = $unbound::control_interface
-  $control_port = $unbound::control_port
-  $control_use_cert = $unbound::control_use_cert
-  $server_key_file = $unbound::server_key_file
-  $server_key_content = $unbound::server_key_content
-  $server_key_source = $unbound::server_key_source
-  $server_cert_file = $unbound::server_cert_file
-  $server_cert_content = $unbound::server_cert_content
-  $server_cert_source = $unbound::server_cert_source
-  $control_key_file = $unbound::control_key_file
-  $control_key_content = $unbound::control_key_content
-  $control_key_source = $unbound::control_key_source
-  $control_cert_file = $unbound::control_cert_file
-  $control_cert_content = $unbound::control_cert_content
-  $control_cert_source = $unbound::control_cert_source
+  $control_enable = $::unbound::control_enable
+  $control_interface = $::unbound::control_interface
+  $control_port = $::unbound::control_port
+  $control_use_cert = $::unbound::control_use_cert
+  $server_key_file = $::unbound::server_key_file
+  $server_key_content = $::unbound::server_key_content
+  $server_key_source = $::unbound::server_key_source
+  $server_cert_file = $::unbound::server_cert_file
+  $server_cert_content = $::unbound::server_cert_content
+  $server_cert_source = $::unbound::server_cert_source
+  $control_key_file = $::unbound::control_key_file
+  $control_key_content = $::unbound::control_key_content
+  $control_key_source = $::unbound::control_key_source
+  $control_cert_file = $::unbound::control_cert_file
+  $control_cert_content = $::unbound::control_cert_content
+  $control_cert_source = $::unbound::control_cert_source
 
   if $control_enable {
-    file { "${unbound::config_sub_dir}/remote-control.conf":
+    file { "${::unbound::config_sub_dir}/remote-control.conf":
       ensure       => file,
-      owner        => $unbound::user,
-      group        => $unbound::group,
+      owner        => $::unbound::user,
+      group        => $::unbound::group,
       mode         => '0640',
       content      => template('unbound/remote-control.conf.erb'),
-      require      => File[$unbound::config_sub_dir],
-      notify       => Service[$unbound::params::service_name],
-      validate_cmd => $unbound::validate_cmd,
+      require      => File[$::unbound::config_sub_dir],
+      notify       => Service[$::unbound::params::service_name],
+      validate_cmd => $::unbound::validate_cmd,
     }
 
     if $control_use_cert or $control_use_cert == undef {
@@ -58,8 +58,8 @@ class unbound::config::remote_control inherits unbound {
 
       file { $server_key_file:
         ensure  => file,
-        owner   => $unbound::user,
-        group   => $unbound::group,
+        owner   => $::unbound::user,
+        group   => $::unbound::group,
         mode    => '0640',
         content => $server_key_content,
         source  => $server_key_source,
@@ -67,8 +67,8 @@ class unbound::config::remote_control inherits unbound {
 
       file { $server_cert_file:
         ensure  => file,
-        owner   => $unbound::user,
-        group   => $unbound::group,
+        owner   => $::unbound::user,
+        group   => $::unbound::group,
         mode    => '0640',
         content => $server_cert_content,
         source  => $server_cert_source,
@@ -76,8 +76,8 @@ class unbound::config::remote_control inherits unbound {
 
       file { $control_key_file:
         ensure  => file,
-        owner   => $unbound::user,
-        group   => $unbound::group,
+        owner   => $::unbound::user,
+        group   => $::unbound::group,
         mode    => '0640',
         content => $control_key_content,
         source  => $control_key_source,
@@ -85,8 +85,8 @@ class unbound::config::remote_control inherits unbound {
 
       file { $control_cert_file:
         ensure  => file,
-        owner   => $unbound::user,
-        group   => $unbound::group,
+        owner   => $::unbound::user,
+        group   => $::unbound::group,
         mode    => '0640',
         content => $control_cert_content,
         source  => $control_cert_source,

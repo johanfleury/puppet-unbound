@@ -1,25 +1,25 @@
 # Class: unbound
 class unbound (
-  String $package_name = $unbound::params::package_name,
-  String $package_ensure = $unbound::params::package_ensure,
+  String $package_name = $::unbound::params::package_name,
+  String $package_ensure = $::unbound::params::package_ensure,
 
-  String $service_name = $unbound::params::service_name,
-  String $service_ensure = $unbound::params::service_ensure,
-  Boolean $service_enable = $unbound::params::service_enable,
+  String $service_name = $::unbound::params::service_name,
+  String $service_ensure = $::unbound::params::service_ensure,
+  Boolean $service_enable = $::unbound::params::service_enable,
 
-  Stdlib::AbsolutePath $config_dir = $unbound::params::config_dir,
-  Stdlib::AbsolutePath $config_file = $unbound::params::config_file,
-  Stdlib::AbsolutePath $config_sub_dir = $unbound::params::config_sub_dir,
+  Stdlib::AbsolutePath $config_dir = $::unbound::params::config_dir,
+  Stdlib::AbsolutePath $config_file = $::unbound::params::config_file,
+  Stdlib::AbsolutePath $config_sub_dir = $::unbound::params::config_sub_dir,
 
-  String $user = $unbound::params::user,
-  String $group = $unbound::params::group,
+  String $user = $::unbound::params::user,
+  String $group = $::unbound::params::group,
 
-  String $validate_cmd = $unbound::params::validate_cmd,
+  String $validate_cmd = $::unbound::params::validate_cmd,
 
-  Boolean $download_root_hints = $unbound::params::download_root_hints,
-  Boolean $download_trust_anchor = $unbound::params::download_trust_anchor,
+  Boolean $download_root_hints = $::unbound::params::download_root_hints,
+  Boolean $download_trust_anchor = $::unbound::params::download_trust_anchor,
 
-  String $root_hints_url = $unbound::params::root_hints_url,
+  String $root_hints_url = $::unbound::params::root_hints_url,
 
   Optional[Integer[0,5]] $verbosity = undef,
   Optional[Integer] $statistics_interval = undef,

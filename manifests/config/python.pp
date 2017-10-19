@@ -1,5 +1,5 @@
 # Class: unbound::config::python
-class unbound::config::python inherits unbound {
+class unbound::config::python {
   assert_private()
 
   $python_script = $unbound::python_script

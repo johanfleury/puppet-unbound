@@ -1,5 +1,5 @@
 # Class: unbound::config::module_config
-class unbound::config::module_config inherits unbound {
+class unbound::config::module_config {
   assert_private()
 
   $dns64_prefix = $unbound::dns64_prefix
