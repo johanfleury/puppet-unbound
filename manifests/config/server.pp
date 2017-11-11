@@ -152,6 +152,7 @@ class unbound::config::server {
       command => "wget -q ${::unbound::root_hints_url} -O ${root_hints}",
       user    => $::unbound::user,
       creates => $root_hints,
+      before  => File["${::unbound::config_sub_dir}/server.conf"],
     }
   }
 
@@ -160,6 +161,7 @@ class unbound::config::server {
       command => "unbound-anchor -a ${auto_trust_anchor_file}",
       user    => $::unbound::user,
       creates => $auto_trust_anchor_file,
+      before  => File["${::unbound::config_sub_dir}/server.conf"],
     }
   }
 }
