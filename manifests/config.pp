@@ -2,6 +2,8 @@
 class unbound::config {
   assert_private()
 
+  $config_sub_dir = $unbound::config_sub_dir
+
   file { $unbound::config_dir:
     ensure  => directory,
     purge   => true,
@@ -18,8 +20,6 @@ class unbound::config {
     mode    => '0640',
     content => template('unbound/unbound.conf.erb'),
   }
-
-  $config_sub_dir = $unbound::config_sub_dir
 
   file { $config_sub_dir:
     ensure  => directory,
