@@ -54,44 +54,30 @@ class unbound::config::remote_control {
         fail("Can't use 'control_cert_source' and 'control_cert_content' at the same time.")
       }
 
-      File {
-        before => File["${unbound::config_sub_dir}/remote-control.conf"],
-      }
-
-      file { $server_key_file:
-        ensure  => file,
-        owner   => $::unbound::user,
-        group   => $::unbound::group,
-        mode    => '0640',
-        content => $server_key_content,
-        source  => $server_key_source,
-      }
-
-      file { $server_cert_file:
-        ensure  => file,
-        owner   => $::unbound::user,
-        group   => $::unbound::group,
-        mode    => '0640',
-        content => $server_cert_content,
-        source  => $server_cert_source,
-      }
-
-      file { $control_key_file:
-        ensure  => file,
-        owner   => $::unbound::user,
-        group   => $::unbound::group,
-        mode    => '0640',
-        content => $control_key_content,
-        source  => $control_key_source,
-      }
-
-      file { $control_cert_file:
-        ensure  => file,
-        owner   => $::unbound::user,
-        group   => $::unbound::group,
-        mode    => '0640',
-        content => $control_cert_content,
-        source  => $control_cert_source,
+      file {
+        default:
+          ensure => file,
+          owner  => $::unbound::user,
+          group  => $::unbound::group,
+          mode   => '0640',
+          before => File["${unbound::config_sub_dir}/remote-control.conf"],
+        ;
+        $server_key_file:
+          content => $server_key_content,
+          source  => $server_key_source,
+        ;
+        $server_cert_file:
+          content => $server_cert_content,
+          source  => $server_cert_source,
+        ;
+        $control_key_file:
+          content => $control_key_content,
+          source  => $control_key_source,
+        ;
+        $control_cert_file:
+          content => $control_cert_content,
+          source  => $control_cert_source,
+        ;
       }
     }
   }
