@@ -1,6 +1,6 @@
 {
   "name": "arcaik-unbound",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Johan Fleury (Arcaik)",
   "summary": "Configuration and management of Unbound",
   "license": "GPL-3.0",
@@ -12,7 +12,8 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8"
+        "8",
+        "9"
       ]
     }
   ],

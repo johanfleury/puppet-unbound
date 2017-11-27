@@ -187,6 +187,6 @@ class unbound (
   contain unbound::service
 
   Class['unbound::install']
-  ~> Class['unbound::config']
-  -> Class['unbound::service']
+  -> Class['unbound::config']
+  ~> Class['unbound::service']
 }
