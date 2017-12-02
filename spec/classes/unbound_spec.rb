@@ -27,7 +27,7 @@ describe 'unbound' do
         'recurse' => 'true',
         'owner'   => 'unbound',
         'group'   => 'unbound',
-        'mode'    => '0750',
+        'mode'    => '0750'
       )
     }
 
@@ -36,7 +36,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640',
+        'mode'   => '0640'
       )
     }
 
@@ -47,14 +47,14 @@ describe 'unbound' do
         'recurse' => 'true',
         'owner'   => 'unbound',
         'group'   => 'unbound',
-        'mode'    => '0750',
+        'mode'    => '0750'
       )
     }
 
-    it { is_expected.to contain_class('unbound::config::server')  }
-    it { is_expected.to contain_class('unbound::config::remote_control')  }
-    it { is_expected.to contain_class('unbound::config::module_config')  }
-    it { is_expected.to contain_class('unbound::config::python')  }
+    it { is_expected.to contain_class('unbound::config::server') }
+    it { is_expected.to contain_class('unbound::config::remote_control') }
+    it { is_expected.to contain_class('unbound::config::module_config') }
+    it { is_expected.to contain_class('unbound::config::python') }
 
     it { is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/stub-zones.conf') }
     it { is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/forward-zones.conf') }
@@ -69,7 +69,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640',
+        'mode'   => '0640'
       )
     }
 
@@ -85,7 +85,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640',
+        'mode'   => '0640'
       )
     }
 
@@ -98,7 +98,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640',
+        'mode'   => '0640'
       )
     }
 
@@ -111,7 +111,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640',
+        'mode'   => '0640'
       )
     }
 
@@ -122,7 +122,7 @@ describe 'unbound' do
     it {
       is_expected.to contain_service('unbound').with(
         'ensure' => 'running',
-        'enable' => true,
+        'enable' => true
       )
     }
   end
