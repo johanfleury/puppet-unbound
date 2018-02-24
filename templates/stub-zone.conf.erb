@@ -7,7 +7,7 @@ stub-zone:
 <%- end -%>
 <%- if not @stub_addr.nil? -%>
   <%- @stub_addr.each do |v| -%>
-  stub-addr: <%= @stub_addr %>
+  stub-addr: <%= v %>
   <%- end -%>
 <%- end -%>
 <%- if not @stub_prime.nil? -%>
