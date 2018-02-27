@@ -81,7 +81,40 @@ describe 'unbound' do
     #
 
     it {
-      is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/remote-control.conf').with(
+      is_expected.to contain_file('/etc/unbound/unbound.conf.d/remote-control.conf').with(
+        'ensure' => 'file',
+        'owner'  => 'unbound',
+        'group'  => 'unbound',
+        'mode'   => '0640'
+      )
+    }
+
+    it {
+      is_expected.to contain_file('/etc/unbound/unbound_control.key').with(
+        'ensure' => 'file',
+        'owner'  => 'unbound',
+        'group'  => 'unbound',
+        'mode'   => '0640'
+      )
+    }
+    it {
+      is_expected.to contain_file('/etc/unbound/unbound_control.pem').with(
+        'ensure' => 'file',
+        'owner'  => 'unbound',
+        'group'  => 'unbound',
+        'mode'   => '0640'
+      )
+    }
+    it {
+      is_expected.to contain_file('/etc/unbound/unbound_server.key').with(
+        'ensure' => 'file',
+        'owner'  => 'unbound',
+        'group'  => 'unbound',
+        'mode'   => '0640'
+      )
+    }
+    it {
+      is_expected.to contain_file('/etc/unbound/unbound_server.pem').with(
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',

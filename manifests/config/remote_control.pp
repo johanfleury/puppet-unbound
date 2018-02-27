@@ -19,16 +19,16 @@ class unbound::config::remote_control {
   $control_cert_content = $::unbound::control_cert_content
   $control_cert_source = $::unbound::control_cert_source
 
-  if $control_enable {
-    file { "${::unbound::config_sub_dir}/remote-control.conf":
-      ensure       => file,
-      owner        => $::unbound::user,
-      group        => $::unbound::group,
-      mode         => '0640',
-      content      => template('unbound/remote-control.conf.erb'),
-      validate_cmd => $::unbound::validate_cmd,
-    }
+  file { "${::unbound::config_sub_dir}/remote-control.conf":
+    ensure       => file,
+    owner        => $::unbound::user,
+    group        => $::unbound::group,
+    mode         => '0640',
+    content      => template('unbound/remote-control.conf.erb'),
+    validate_cmd => $::unbound::validate_cmd,
+  }
 
+  if $control_enable {
     if $control_use_cert or $control_use_cert == undef {
       if !($server_key_content or $server_key_source) {
         crit('No \'server_key_content\' nor \'server_key_source\' specified')
@@ -79,6 +79,19 @@ class unbound::config::remote_control {
           source  => $control_cert_source,
         ;
       }
+    }
+  } else {
+    # ensure that the default key/cert files exist (and are empty), if we disable remote_commands
+    # this is necessary to make unbound-checkconf (set with validate_cmd) happy since it checks the files
+    # exists even if not used.
+    $default_keyfiles = prefix(['unbound_server.key', 'unbound_server.pem', 'unbound_control.key', 'unbound_control.pem'], "${unbound::config_dir}/")
+    file{ $default_keyfiles:
+      ensure  => file,
+      owner   => $::unbound::user,
+      group   => $::unbound::group,
+      mode    => '0640',
+      content => '',
+      before  => File["${unbound::config_sub_dir}/remote-control.conf"],
     }
   }
 }
