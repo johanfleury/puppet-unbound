@@ -149,7 +149,7 @@ class unbound::config::server {
 
   if $root_hints and $::unbound::download_root_hints {
     exec { 'update-root-hints':
-      command => "wget -q ${::unbound::root_hints_url} -O ${root_hints}",
+      command => "/usr/bin/wget -q ${::unbound::root_hints_url} -O ${root_hints}",
       user    => $::unbound::user,
       creates => $root_hints,
       before  => File["${::unbound::config_sub_dir}/server.conf"],
@@ -158,7 +158,7 @@ class unbound::config::server {
 
   if $auto_trust_anchor_file and $::unbound::download_trust_anchor {
     exec { 'update-trust-anchors':
-      command => "unbound-anchor -a ${auto_trust_anchor_file}",
+      command => "/usr/sbin/unbound-anchor -a ${auto_trust_anchor_file}",
       user    => $::unbound::user,
       creates => $auto_trust_anchor_file,
       before  => File["${::unbound::config_sub_dir}/server.conf"],
