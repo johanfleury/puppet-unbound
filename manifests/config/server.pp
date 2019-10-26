@@ -59,7 +59,7 @@ class unbound::config::server {
   $access_control_tag_data = $::unbound::access_control_tag_data
   $access_control_view = $::unbound::access_control_view
   $chroot = $::unbound::chroot
-  $username = $::unbound::user
+  $username = $::unbound::username
   $directory = $::unbound::directory
   $logfile = $::unbound::logfile
   $use_syslog = $::unbound::use_syslog

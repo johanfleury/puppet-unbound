@@ -12,6 +12,7 @@ class unbound (
   Stdlib::AbsolutePath $config_sub_dir = $::unbound::params::config_sub_dir,
 
   String $user = $::unbound::params::user,
+  String $username = $::unbound::params::user,
   String $group = $::unbound::params::group,
 
   String $validate_cmd = $::unbound::params::validate_cmd,
