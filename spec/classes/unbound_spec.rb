@@ -1,162 +1,156 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'unbound' do
-  context 'with defaults for all parameters' do
-    it { is_expected.to compile.with_all_deps }
+  on_supported_os.each do |os, os_facts|
+    context "on #{os}" do
+      let(:facts) { os_facts }
 
-    it { is_expected.to contain_class('unbound') }
-    it { is_expected.to contain_class('unbound::params') }
-    it { is_expected.to contain_class('unbound::install') }
-    it { is_expected.to contain_class('unbound::config') }
-    it { is_expected.to contain_class('unbound::service') }
+      it do
+        is_expected.to compile.with_all_deps
 
-    #
-    # unbound::install
-    #
+        is_expected.to contain_class('unbound')
+        is_expected.to contain_class('unbound::params')
+      end
 
-    it { is_expected.to contain_package('unbound').with('ensure' => 'present') }
+      context 'with default parameters' do
+        #
+        # unbound::install
+        #
+        it do
+          is_expected.to contain_class('unbound::install')
 
-    #
-    # unbound::config
-    #
+          is_expected.to contain_package('unbound').only_with_ensure('present')
+        end
 
-    it {
-      is_expected.to contain_file('/etc/unbound').with(
-        'ensure'  => 'directory',
-        'purge'   => 'true',
-        'recurse' => 'true',
-        'owner'   => 'unbound',
-        'group'   => 'unbound',
-        'mode'    => '0750',
-      )
-    }
+        #
+        # unbound::config
+        #
+        it do
+          is_expected.to contain_class('unbound::config')
 
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound.conf').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound').only_with(
+            'ensure'  => 'directory',
+            'purge'   => 'true',
+            'recurse' => 'true',
+            'owner'   => 'unbound',
+            'group'   => 'unbound',
+            'mode'    => '0750',
+          )
 
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound.conf.d').with(
-        'ensure'  => 'directory',
-        'purge'   => 'true',
-        'recurse' => 'true',
-        'owner'   => 'unbound',
-        'group'   => 'unbound',
-        'mode'    => '0750',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound/unbound.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it { is_expected.to contain_class('unbound::config::server') }
-    it { is_expected.to contain_class('unbound::config::remote_control') }
-    it { is_expected.to contain_class('unbound::config::module_config') }
-    it { is_expected.to contain_class('unbound::config::python') }
+          is_expected.to contain_file('/etc/unbound/unbound.conf.d').only_with(
+            'ensure'  => 'directory',
+            'purge'   => 'true',
+            'recurse' => 'true',
+            'owner'   => 'unbound',
+            'group'   => 'unbound',
+            'mode'    => '0750',
+          )
 
-    it { is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/stub-zones.conf') }
-    it { is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/forward-zones.conf') }
-    it { is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/views.conf') }
+          is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/stub-zones.conf')
+          is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/forward-zones.conf')
+          is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/views.conf')
 
-    #
-    # unbound::config::server
-    #
+          #
+          # unbound::config::server
+          #
+          is_expected.to contain_class('unbound::config::server')
 
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound.conf.d/server.conf').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound/unbound.conf.d/server.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it { is_expected.not_to contain_exec('update-root-hints') }
-    it { is_expected.not_to contain_exec('update-trust-anchors') }
+          is_expected.not_to contain_exec('update-root-hints')
+          is_expected.not_to contain_exec('update-trust-anchors')
 
-    #
-    # unbound::config::remote_control
-    #
+          #
+          # unbound::config::remote_control
+          #
+          is_expected.to contain_class('unbound::config::remote_control')
 
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound.conf.d/remote-control.conf').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound/unbound.conf.d/remote-control.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound_control.key').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound_control.pem').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound_server.key').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
-    it {
-      is_expected.to contain_file('/etc/unbound/unbound_server.pem').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound/unbound_control.key').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    #
-    # unbound::config::module_config
-    #
+          is_expected.to contain_file('/etc/unbound/unbound_control.pem').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it {
-      is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/module-config.conf').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          is_expected.to contain_file('/etc/unbound/unbound_server.key').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    #
-    # unbound::config::python
-    #
+          is_expected.to contain_file('/etc/unbound/unbound_server.pem').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it {
-      is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/python.conf').with(
-        'ensure' => 'file',
-        'owner'  => 'unbound',
-        'group'  => 'unbound',
-        'mode'   => '0640',
-      )
-    }
+          #
+          # unbound::config::module_config
+          #
+          is_expected.to contain_class('unbound::config::module_config')
 
-    #
-    # unbound::service
-    #
+          is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/module-config.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
 
-    it {
-      is_expected.to contain_service('unbound').with(
-        'ensure' => 'running',
-        'enable' => true,
-      )
-    }
+          #
+          # unbound::config::python
+          #
+          is_expected.to contain_class('unbound::config::python')
+
+          is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/python.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'unbound',
+            'group'  => 'unbound',
+            'mode'   => '0640',
+          )
+        end
+
+        #
+        # unbound::service
+        #
+        it do
+          is_expected.to contain_class('unbound::service')
+
+          is_expected.to contain_service('unbound').only_with(
+            'ensure' => 'running',
+            'enable' => true,
+          )
+        end
+      end
+    end
   end
 end
