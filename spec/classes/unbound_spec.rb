@@ -11,7 +11,6 @@ describe 'unbound' do
         is_expected.to compile.with_all_deps
 
         is_expected.to contain_class('unbound')
-        is_expected.to contain_class('unbound::params')
       end
 
       context 'with default parameters' do
@@ -21,7 +20,7 @@ describe 'unbound' do
         it do
           is_expected.to contain_class('unbound::install')
 
-          is_expected.to contain_package('unbound').only_with_ensure('present')
+          is_expected.to contain_package('unbound').only_with_ensure('installed')
         end
 
         #

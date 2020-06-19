@@ -1,0 +1,21 @@
+---
+unbound::package_name: unbound
+unbound::package_ensure: installed
+
+unbound::service_name: unbound
+unbound::service_ensure: running
+unbound::service_enable: true
+
+unbound::config_dir: /etc/unbound
+unbound::config_file: /etc/unbound/unbound.conf
+unbound::config_sub_dir: /etc/unbound/unbound.conf.d
+
+unbound::user: unbound
+unbound::group: unbound
+
+unbound::validate_cmd: "unbound-checkconf %"
+
+unbound::download_root_hints: true
+unbound::download_trust_anchor: true
+
+unbound::root_hints_url: https://www.internic.net/domain/named.cache
