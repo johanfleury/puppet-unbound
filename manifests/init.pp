@@ -182,11 +182,11 @@ class unbound (
   Hash $forward_zones = {},
   Hash $views = {},
 ) inherits unbound::params {
-  contain ::unbound::install
-  contain ::unbound::config
-  contain ::unbound::service
+  contain unbound::install
+  contain unbound::config
+  contain unbound::service
 
-  Class['::unbound::install']
-  -> Class['::unbound::config']
-  ~> Class['::unbound::service']
+  Class['unbound::install']
+  -> Class['unbound::config']
+  ~> Class['unbound::service']
 }

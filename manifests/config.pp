@@ -30,10 +30,10 @@ class unbound::config {
     mode    => '0750',
   }
 
-  contain ::unbound::config::server
-  contain ::unbound::config::remote_control
-  contain ::unbound::config::module_config
-  contain ::unbound::config::python
+  contain unbound::config::server
+  contain unbound::config::remote_control
+  contain unbound::config::module_config
+  contain unbound::config::python
 
   create_resources('::unbound::stub_zone', $unbound::stub_zones)
   create_resources('::unbound::forward_zone', $unbound::forward_zones)

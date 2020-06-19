@@ -27,7 +27,7 @@ describe 'unbound' do
         'recurse' => 'true',
         'owner'   => 'unbound',
         'group'   => 'unbound',
-        'mode'    => '0750'
+        'mode'    => '0750',
       )
     }
 
@@ -36,7 +36,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -47,7 +47,7 @@ describe 'unbound' do
         'recurse' => 'true',
         'owner'   => 'unbound',
         'group'   => 'unbound',
-        'mode'    => '0750'
+        'mode'    => '0750',
       )
     }
 
@@ -69,7 +69,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -85,7 +85,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -94,7 +94,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
     it {
@@ -102,7 +102,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
     it {
@@ -110,7 +110,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
     it {
@@ -118,7 +118,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -131,7 +131,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -144,7 +144,7 @@ describe 'unbound' do
         'ensure' => 'file',
         'owner'  => 'unbound',
         'group'  => 'unbound',
-        'mode'   => '0640'
+        'mode'   => '0640',
       )
     }
 
@@ -155,7 +155,7 @@ describe 'unbound' do
     it {
       is_expected.to contain_service('unbound').with(
         'ensure' => 'running',
-        'enable' => true
+        'enable' => true,
       )
     }
   end
