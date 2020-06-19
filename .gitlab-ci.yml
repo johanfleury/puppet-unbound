@@ -1,0 +1,55 @@
+---
+stages:
+  - test:syntax
+  - test:unit
+
+cache:
+  paths:
+    - vendor/bundle
+
+before_script:
+  - bundle -v
+  - rm -f Gemfile.lock
+  - gem --version
+  - bundle -v
+  - bundle install --without system_tests --path vendor/bundle --jobs $(nproc)
+
+test:syntax:
+  stage: test:syntax
+  image: ruby:2.5.7
+  script:
+    - bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
+  variables:
+    PUPPET_GEM_VERSION: '~> 6'
+
+"test:unit:Ruby 2.5.7 Puppet ~> 6":
+  stage: test:unit
+  image: ruby:2.5.7
+  script:
+    - bundle exec rake parallel_spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 6'
+
+"test:unit:Ruby 2.5.7 Puppet ~> 5":
+  stage: test:unit
+  image: ruby:2.5.7
+  script:
+    - bundle exec rake parallel_spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 5'
+
+"test:unit:Ruby 2.4.5 Puppet ~> 6":
+  stage: test:unit
+  image: ruby:2.4.5
+  script:
+    - bundle exec rake parallel_spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 6'
+
+"test:unit:Ruby 2.4.5 Puppet ~> 5":
+  stage: test:unit
+  image: ruby:2.4.5
+  script:
+    - bundle exec rake parallel_spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 5'

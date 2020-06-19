@@ -1,13 +1,22 @@
 {
-  "name": "arcaik-unbound",
+  "name": "marionetoj-unbound",
   "version": "0.2.5",
   "author": "Johan Fleury (Arcaik)",
   "summary": "Configuration and management of Unbound",
-  "license": "GPL-3.0",
-  "source": "https://github.com/johanfleury/puppet-unbound",
-  "project_page": "https://github.com/johanfleury/puppet-unbound",
-  "issues_url": "https://github.com/johanfleury/puppet-unbound/issues",
-  "tags": ["unbound", "dns"],
+  "license": "GPL-3.0-or-later",
+  "source": "https://gitlab.com/marionetoj/puppet-modules/unbound",
+  "project_page": "https://gitlab.com/marionetoj/puppet-modules/unbound",
+  "issues_url": "https://gitlab.com/marionetoj/puppet-modules/unbound/-/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 4.17.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs-concat",
+      "version_requirement": ">= 2.0.0 < 7.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
@@ -17,17 +26,17 @@
       ]
     }
   ],
-  "dependencies": [
+  "requirements": [
     {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.17.0 < 5.0.0"
-    },
-    {
-      "name": "puppetlabs-concat",
-      "version_requirement": ">= 2.0.0 < 5.0.0"
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0 < 7.0.0"
     }
   ],
-  "requirements": [
-    { "name": "puppet", "version_requirement": ">= 4.0.0 < 6.0.0" }
-  ]
+  "tags": [
+    "unbound",
+    "dns"
+  ],
+  "pdk-version": "1.18.0",
+  "template-url": "https://gitlab.com/marionetoj/puppet-modules/pdk-templates.git#main",
+  "template-ref": "heads/main-0-g82ccd8a"
 }
