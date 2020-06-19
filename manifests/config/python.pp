@@ -7,7 +7,7 @@ class unbound::config::python {
   if $python_script {
     file { "${unbound::config_sub_dir}/python.conf":
       ensure       => file,
-      owner        => $unbound::user,
+      owner        => 'root',
       group        => $unbound::group,
       mode         => '0640',
       content      => template('unbound/python.erb'),

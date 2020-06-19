@@ -21,7 +21,7 @@ class unbound::config::remote_control {
 
   file { "${::unbound::config_sub_dir}/remote-control.conf":
     ensure       => file,
-    owner        => $::unbound::user,
+    owner        => 'root',
     group        => $::unbound::group,
     mode         => '0640',
     content      => template('unbound/remote-control.conf.erb'),
@@ -57,7 +57,7 @@ class unbound::config::remote_control {
       file {
         default:
           ensure => file,
-          owner  => $::unbound::user,
+          owner  => 'root',
           group  => $::unbound::group,
           mode   => '0640',
           before => File["${unbound::config_sub_dir}/remote-control.conf"],
@@ -87,7 +87,7 @@ class unbound::config::remote_control {
     $default_keyfiles = prefix(['unbound_server.key', 'unbound_server.pem', 'unbound_control.key', 'unbound_control.pem'], "${unbound::config_dir}/")
     file{ $default_keyfiles:
       ensure  => file,
-      owner   => $::unbound::user,
+      owner   => 'root',
       group   => $::unbound::group,
       mode    => '0640',
       content => '',

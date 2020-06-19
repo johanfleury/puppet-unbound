@@ -7,7 +7,7 @@ define unbound::view (
 
   ensure_resource('::concat', "${::unbound::config_sub_dir}/views.conf", {
     ensure       => present,
-    owner        => $::unbound::user,
+    owner        => 'root',
     group        => $::unbound::group,
     mode         => '0640',
     warn         => true,

@@ -34,14 +34,14 @@ describe 'unbound' do
             'ensure'  => 'directory',
             'purge'   => 'true',
             'recurse' => 'true',
-            'owner'   => 'unbound',
+            'owner'   => 'root',
             'group'   => 'unbound',
             'mode'    => '0750',
           )
 
           is_expected.to contain_file('/etc/unbound/unbound.conf').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
@@ -50,7 +50,7 @@ describe 'unbound' do
             'ensure'  => 'directory',
             'purge'   => 'true',
             'recurse' => 'true',
-            'owner'   => 'unbound',
+            'owner'   => 'root',
             'group'   => 'unbound',
             'mode'    => '0750',
           )
@@ -66,7 +66,7 @@ describe 'unbound' do
 
           is_expected.to contain_file('/etc/unbound/unbound.conf.d/server.conf').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
@@ -81,35 +81,35 @@ describe 'unbound' do
 
           is_expected.to contain_file('/etc/unbound/unbound.conf.d/remote-control.conf').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
 
           is_expected.to contain_file('/etc/unbound/unbound_control.key').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
 
           is_expected.to contain_file('/etc/unbound/unbound_control.pem').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
 
           is_expected.to contain_file('/etc/unbound/unbound_server.key').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
 
           is_expected.to contain_file('/etc/unbound/unbound_server.pem').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
@@ -121,7 +121,7 @@ describe 'unbound' do
 
           is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/module-config.conf').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )
@@ -133,7 +133,7 @@ describe 'unbound' do
 
           is_expected.not_to contain_file('/etc/unbound/unbound.conf.d/python.conf').with(
             'ensure' => 'file',
-            'owner'  => 'unbound',
+            'owner'  => 'root',
             'group'  => 'unbound',
             'mode'   => '0640',
           )

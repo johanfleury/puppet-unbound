@@ -140,7 +140,7 @@ class unbound::config::server {
 
   file { "${::unbound::config_sub_dir}/server.conf":
     ensure       => file,
-    owner        => $::unbound::user,
+    owner        => 'root',
     group        => $::unbound::group,
     mode         => '0640',
     content      => template('unbound/server.conf.erb'),

@@ -8,7 +8,7 @@ class unbound::config::module_config {
   if $dns64_prefix {
     file { "${unbound::config_sub_dir}/module-config.conf":
       ensure       => file,
-      owner        => $unbound::user,
+      owner        => 'root',
       group        => $unbound::group,
       mode         => '0640',
       content      => template('unbound/module-config.conf.erb'),

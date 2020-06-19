@@ -12,7 +12,7 @@ define unbound::stub_zone (
 
   ensure_resource('::concat', "${::unbound::config_sub_dir}/stub-zones.conf", {
     ensure       => present,
-    owner        => $::unbound::user,
+    owner        => 'root',
     group        => $::unbound::group,
     mode         => '0640',
     warn         => true,

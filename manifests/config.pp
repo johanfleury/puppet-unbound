@@ -8,14 +8,14 @@ class unbound::config {
     ensure  => directory,
     purge   => true,
     recurse => true,
-    owner   => $unbound::user,
+    owner   => 'root',
     group   => $unbound::group,
     mode    => '0750',
   }
 
   file { $unbound::config_file:
     ensure  => file,
-    owner   => $unbound::user,
+    owner   => 'root',
     group   => $unbound::group,
     mode    => '0640',
     content => template('unbound/unbound.conf.erb'),
@@ -25,7 +25,7 @@ class unbound::config {
     ensure  => directory,
     purge   => true,
     recurse => true,
-    owner   => $unbound::user,
+    owner   => 'root',
     group   => $unbound::group,
     mode    => '0750',
   }
